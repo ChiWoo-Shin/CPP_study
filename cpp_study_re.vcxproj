@@ -131,6 +131,10 @@
     <ClCompile Include="CPP_study_16.cpp" />
     <ClCompile Include="TextRPG_1.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
