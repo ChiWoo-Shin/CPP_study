@@ -45,11 +45,14 @@ int main()
 	player.hp = 100;
 	player.damage = 10;
 
+	// 구조체도 pointer가 가능
 	Player* playerPtr = &player;
-
+	// 4-1과 4-2는 동일한 방법이다.
+	// 4-2의 방법을 추천함 (앞으로 class에서도 ->를 쓰게 되는데 그건 그때가서)
+	//4-1
 	(*playerPtr).hp = 200;
 	(*playerPtr).damage = 200;
-	
+	//4-2
 	playerPtr->hp = 300;
 	playerPtr->damage = 300;
 
