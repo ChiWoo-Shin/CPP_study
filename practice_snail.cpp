@@ -25,6 +25,7 @@ int main()
 	cin >> N;
 
 	PrintBoard();
+	
 
 	return 0;
 }
