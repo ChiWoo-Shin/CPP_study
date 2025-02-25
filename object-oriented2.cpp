@@ -40,13 +40,25 @@ public:
 	}
 
 	// [3] 기타 생성자
-	Knight(int hp)
+	// 이 중에서 인자를 1개만 받는 [기타 생성자]를
+	// [타입변환 생성자]라고 부르기도 함
+
+	// 타입변환 용도로 사용하지 않고 명시적으로만 사용하기 위해선 explicit를 앞에 붙이면됨
+	explicit Knight(int hp)
 	{
 		cout << "Knight(int) 생성자 호출" << endl;
 		_hp = 100;
 		_attack = 10;
 		_posX = 0;
 		_posY = 0;
+	}
+
+	Knight(int hp, int attack, int posX, int posY)
+	{
+		_hp = hp;
+		_attack = attack;
+		_posY = posY;
+		_posX = posX;
 	}
 
 	// 소멸자 -- return 0; 이후에 호출되고있음
@@ -88,6 +100,11 @@ void Knight::Attack()
 	cout << "Attack : " << _attack << endl;
 }
 
+void HelloKnight(Knight k)
+{
+	cout << "Hello Knight" << endl;
+}
+
 // Instantiate 객체를 만든다!
 int main()
 {
@@ -96,18 +113,34 @@ int main()
 	k1._hp = 100;
 
 	// [3] 일반 생성자
-	Knight k1(100);
+	// Knight k1(100);
+	Knight k5(100, 0, 0, 0);
 
 	k1._attack = 10;
 	k1._posY = 0;
 	k1._posX = 0;
 
 	// [2] 복사 생성자
-	Knight k2(k1);
+	Knight k2(k1); // 복사 생성자를 주석처리해도 정상 동작하는 것을 확인할 수 있음 --> 기본적으로 생성될수 있다 라는 것을 알 수 있음
+	
+	Knight k3 = k1; // 복사 생성자를 사용해서 knight를 생성
+
+	Knight k4; // 기본 생성자를 사용한 후
+	k4 = k1; // 복사를 진행함
 
 	k1.Move(2, 2);
 	k1.Attack();
 	k1.Die();
+
+	// 암시적 형변환 -> 컴파일러가 알아서 바꿔치기
+	int num = 1;
+	float f = (float)num; // 명시적 < 우리가 코드로 num을 float 바구니에 넣으라고 주문
+	double d = num; // 암시적 << 별말 안했는데 컴파일러가 알아서 처리함
+
+	Knight k6;
+	k6 = (Knight)1; // [타입 변환 생성자]로 인해서 가능한 문법이됨 --> Explicit를 추가한 이후 에러가 발생함 --> 명시적으로 변환을 하면 문제가 없어짐
+
+	HelloKnight((Knight)5); // --> Explicit를 추가한 이후 에러가 발생함 --> 명시적으로 변환을 하면 문제가 없어짐
 
 	return 0;
 }
